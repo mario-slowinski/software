@@ -1,0 +1,7 @@
+- name: "Manage software with 'dnf'"
+  dnf:
+    name: "{{ item['name'] }}"
+    state: "{{ item['state'] | default(omit, true) }}"
+  loop: "{{ software_pkgs }}"
+  loop_control:
+    label: "{{ item['name'] }} with state {{ item['state'] }}"

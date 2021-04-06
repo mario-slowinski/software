@@ -1,0 +1,10 @@
+- name: "Manage software with 'apt'"
+  apt:
+    name: "{{ item['name'] }}"
+    state: "{{ item['state'] | default(omit, true) }}"
+    update_cache: "{{ item['update_cache'] | default(omit, true) }}"
+    autoremove: "{{ item['autoremove'] | default(omit, true) }}"
+    purge: "{{ item['purge'] | default(omit, true) }}"
+  loop: "{{ software_pkgs }}"
+  loop_control:
+    label: "{{ item['name'] }} with state {{ item['state'] }}"
