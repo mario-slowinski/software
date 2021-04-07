@@ -4,4 +4,4 @@
     state: "{{ item['state'] | default(omit, true) }}"
   loop: "{{ software_pkgs }}"
   loop_control:
-    label: "{{ item['name'] }} with state {{ item['state'] }}"
+    label: "{{ item['name'] }} state={{ item['state'] }}"
