@@ -1,7 +1,4 @@
-- name: "Manage software in 'Debian' OS family"
-  import_tasks: apt.yml
-  when: ansible_os_family == 'Debian'
+- name: "Manage software"
+  tags: software
+  include_tasks: "{{ ansible_os_family }}.yml"
 
-- name: "Manage software in 'RedHat' OS family"
-  import_tasks: dnf.yml
-  when: ansible_os_family == 'RedHat'
