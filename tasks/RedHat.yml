@@ -1,7 +1,3 @@
-- tags: always
-  debug:
-    msg: "{{ software_pkgs }}"
-
 - name: "Manage software with 'dnf'"
   dnf:
     name: "{{ item['name'] }}"
