@@ -1,7 +1,13 @@
+- tags: always
+  debug:
+    msg: "{{ software_pkgs }}"
+
 - name: "Manage software with 'dnf'"
   dnf:
     name: "{{ item['name'] }}"
     state: "{{ item['state'] | default(omit, true) }}"
+    download_only: "{{ item['download_only'] | default(omit, true) }}"
+    download_dir: "{{ item['download_dir'] | default(omit, true) }}"
   loop: "{{ software_pkgs }}"
   loop_control:
-    label: "{{ item['name'] }} state={{ item['state'] }}"
+    label: "{{ item['name'] }} state={{ item['state'] | default('present') }}"
