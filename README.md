@@ -1,31 +1,53 @@
-Role Name
+software
 =========
 
-A brief description of the role goes here.
+Install software packages with default operating system package manager.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+* [ansible.builtin](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html)
+  * [dnf](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html)
+  * [apt](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html)
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+* defaults
+
+  ```yaml
+  software_pkgs: []     # list of software to manage
+  - name: []            # list of packages names to install or remove
+    state:              # as in ansible modules
+    autoremove: bool    # remove also obsolete packages
+    update_cache: bool  # update package list from configured repo
+  ```
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+This role has no dependencies. But it is frequently used as dependency in other roles.
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+* playbook usage
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+  ```yaml
+  - hosts: servers
+    gather_facts: yes  # to determine ansible_os_family
+    roles:
+    - role: software
+  ```
+
+* role dependency usage
+
+  ```yaml
+  - dependencies:
+    roles:
+    - role: software
+      software_pkgs: "{{ role_pkgs }}"
+  ```
 
 License
 -------
@@ -35,4 +57,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+[mario.slowinski@gmail.com](mailto:mario.slowinski@gmail.com)
