@@ -1,4 +1,3 @@
 - name: "Manage software"
   tags: software
   include_tasks: "{{ ansible_os_family }}.yml"
-
