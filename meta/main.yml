@@ -27,9 +27,9 @@ galaxy_info:
   # https://galaxy.ansible.com/api/v1/platforms/
   #
   platforms:
-  - name: CentOS
+  - name: GenericLinux
     versions:
-    - 8
+    - any
   - name: Ubuntu
     versions:
     - all
