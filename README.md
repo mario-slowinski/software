@@ -1,4 +1,4 @@
-mario_slowinski.software
+software
 =========
 
 Install software packages with default operating system package manager.
@@ -9,6 +9,13 @@ Requirements
 * [ansible.builtin](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html)
   * [dnf](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html)
   * [apt](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html)
+
+* `requirements.yml`
+
+  ```yaml
+  - name: software
+    src: mario_slowinski.software
+  ```
 
 Role Variables
 --------------
@@ -37,22 +44,22 @@ Example Playbook
   - hosts: servers
     gather_facts: yes  # to determine ansible_os_family
     roles:
-    - role: mario_slowinski.software
+    - role: software
   ```
 
 * role dependency usage
 
   ```yaml
-  - dependencies:
-    roles:
-    - role: mario_slowinski.software
+  dependencies:
+    - name: software
+      src: mario_slowinski.software
       software_pkgs: "{{ role_pkgs }}"
   ```
 
 License
 -------
 
-[GPL-2.0-or-later](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+[GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.html)
 
 Author Information
 ------------------
