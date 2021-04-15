@@ -1,3 +1,4 @@
+---
 - name: "Manage software with 'apt'"
   apt:
     name: "{{ item['name'] }}"
