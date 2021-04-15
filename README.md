@@ -1,4 +1,4 @@
-software
+mario_slowinski.software
 =========
 
 Install software packages with default operating system package manager.
@@ -37,7 +37,7 @@ Example Playbook
   - hosts: servers
     gather_facts: yes  # to determine ansible_os_family
     roles:
-    - role: software
+    - role: mario_slowinski.software
   ```
 
 * role dependency usage
@@ -45,14 +45,14 @@ Example Playbook
   ```yaml
   - dependencies:
     roles:
-    - role: software
+    - role: mario_slowinski.software
       software_pkgs: "{{ role_pkgs }}"
   ```
 
 License
 -------
 
-BSD
+[GPL-2.0-or-later](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
 
 Author Information
 ------------------
