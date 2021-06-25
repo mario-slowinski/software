@@ -1,6 +1,6 @@
 ---
 - name: "Manage software with 'apt'"
-  apt:
+  ansible.builtin.apt:
     name: "{{ item['name'] }}"
     state: "{{ item['state'] | default(omit, true) }}"
     update_cache: "{{ item['update_cache'] | default(omit, true) }}"

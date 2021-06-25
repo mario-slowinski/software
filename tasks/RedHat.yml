@@ -1,6 +1,6 @@
 ---
 - name: "Manage software with 'dnf'"
-  dnf:
+  ansible.builtin.dnf:
     name: "{{ item['name'] }}"
     state: "{{ item['state'] | default(omit, true) }}"
     download_only: "{{ item['download_only'] | default(omit, true) }}"
