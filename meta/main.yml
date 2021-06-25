@@ -11,6 +11,18 @@ galaxy_info:
     - name: GenericLinux
       versions:
         - any
+    - name: EL
+      versions:
+        - any
+    - name: Ubuntu
+      versions:
+        - any
+    - name: Debian
+      versions:
+        - any
+    - name: Solaris
+      versions:
+        - 11
 
   galaxy_tags:
     - package
@@ -18,5 +30,6 @@ galaxy_info:
     - apt
     - rpm
     - deb
+    - pkg5
 
 dependencies: []

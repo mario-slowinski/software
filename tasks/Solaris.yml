@@ -1,0 +1,11 @@
+---
+- name: "Manage software with 'pkg5'"
+  community.general.pkg5:
+    name: "{{ item['name'] }}"
+    state: "{{ item['state'] | default(omit, true) }}"
+    accept_licenses: "{{ item['accept_licenses'] | default(omit, true) }}"
+    be_name: "{{ item['be_name'] | default(omit, true) }}"
+    refresh: "{{ item['refresh'] | default(omit, true) }}"
+  loop: "{{ software_pkgs }}"
+  loop_control:
+    label: "{{ item['name'] }} state={{ item['state'] | default('present') }}"

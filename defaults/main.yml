@@ -5,3 +5,4 @@ software_pkgs:
     state: "latest"
     autoremove: false
     update_cache: true
+    accept_licenses: true
