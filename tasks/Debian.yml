@@ -1,7 +1,8 @@
 ---
 - name: "Manage software with 'apt'"
   ansible.builtin.apt:
-    name: "{{ item['name'] }}"
+    name: "{{ item['name'] | default(omit) }}"
+    deb: "{{ item['deb'] | default(omit) }}"
     state: "{{ item['state'] | default(omit, true) }}"
     update_cache: "{{ item['update_cache'] | default(omit, true) }}"
     autoremove: "{{ item['autoremove'] | default(omit, true) }}"

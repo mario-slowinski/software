@@ -18,12 +18,13 @@ Role Variables
 * defaults
 
   ```yaml
-  software_pkgs: []       # list of software to manage
-  - name: []              # list of packages names to install or remove
-    state: ""             # as in ansible modules
-    autoremove: bool      # remove also obsolete packages
-    update_cache: bool    # update package list from configured repo
-    accept_licenses: bool # accept pkg5 package licenses
+  software_pkgs: []         # list of software to manage
+    - name: ""              # packages name to install or remove
+      deb: ""               # direct path to deb file
+      state: ""             # as in ansible modules
+      autoremove: bool      # remove also obsolete packages
+      update_cache: bool    # update package list from configured repo
+      accept_licenses: bool # accept pkg5 package licenses
   ```
 
 Dependencies
