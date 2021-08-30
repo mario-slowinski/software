@@ -9,3 +9,4 @@
   loop: "{{ software_pkgs }}"
   loop_control:
     label: "{{ item['name'] }} state={{ item['state'] | default('present') }}"
+  become: true
