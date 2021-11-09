@@ -25,3 +25,5 @@
   loop_control:
     label: "{{ item['name'] | default(item['deb'], true) }} state={{ item['state'] | default('present') }}"
   become: true
+  environment:
+    DEBIAN_FRONTEND: noninteractive
