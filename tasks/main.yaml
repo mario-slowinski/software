@@ -1,4 +1,8 @@
 ---
 - name: "Manage software"
   tags: software
-  include_tasks: "{{ ansible_os_family }}.yaml"
+  ansible.builtin.include_tasks:
+    file: "{{ ansible_os_family }}.yaml"
+    apply:
+      tags:
+        - software
