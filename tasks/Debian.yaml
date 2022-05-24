@@ -32,6 +32,6 @@
   tags:
     - never
     - software.info
-  ansible.builtin.command: dpkg-query -W {{ item | quote }}
+  ansible.builtin.command: dpkg-query -f ${Version} -W {{ item | quote }}
   loop: "{{ software_pkgs | selectattr('state','ne','absent') | map(attribute='name') | flatten }}"
   register: software_info
