@@ -27,3 +27,11 @@
   become: true
   environment:
     DEBIAN_FRONTEND: noninteractive
+
+- name: "Facts software with 'dpkg-query'"
+  tags:
+    - never
+    - software.info
+  ansible.builtin.command: dpkg-query -W {{ item | quote }}
+  loop: "{{ software_pkgs | selectattr('state','ne','absent') | map(attribute='name') | flatten }}"
+  register: software_info
