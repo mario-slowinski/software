@@ -9,3 +9,16 @@
   loop_control:
     label: "{{ item['name'] }} state={{ item['state'] | default('present') }}"
   become: true
+  when: ansible_pkg_mgr == "dnf"
+
+- name: "Manage software with 'yum'"
+  ansible.builtin.yum:
+    name: "{{ item['name'] }}"
+    state: "{{ item['state'] | default(omit, true) }}"
+    download_only: "{{ item['download_only'] | default(omit, true) }}"
+    download_dir: "{{ item['download_dir'] | default(omit, true) }}"
+  loop: "{{ software_pkgs }}"
+  loop_control:
+    label: "{{ item['name'] }} state={{ item['state'] | default('present') }}"
+  become: true
+  when: ansible_pkg_mgr == "yum"
