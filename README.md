@@ -18,6 +18,8 @@ Role Variables
 * defaults
 
   ```yaml
+  software_keys: []         # list of repository keys to manage
+  software_repos: []        # list of repositories to manage
   software_pkgs: []         # list of software to manage
     - name: ""              # packages name to install or remove
       deb: ""               # direct path to deb file

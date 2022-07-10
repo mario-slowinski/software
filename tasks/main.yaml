@@ -2,6 +2,9 @@
 - name: "Manage software"
   tags:
     - software
+    - software.pkg
+    - software.key
+    - software.repo
     - software.info
   ansible.builtin.include_tasks:
     file: "{{ ansible_os_family }}.yaml"

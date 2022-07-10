@@ -1,4 +1,8 @@
 ---
+software_keys: []
+
+software_repos: []
+
 software_pkgs:
   - name:
       - openssh-server

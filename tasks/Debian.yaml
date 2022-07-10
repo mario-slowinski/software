@@ -1,5 +1,6 @@
 ---
 - name: "Manage software with 'apt'"
+  tags: software.pkg
   ansible.builtin.apt:
     name: "{{ item['name'] | default(omit, true) }}"
     allow_unauthenticated: "{{ item['allow_unauthenticated'] | default(omit, true) }}"
@@ -28,7 +29,34 @@
   environment:
     DEBIAN_FRONTEND: noninteractive
 
-- name: "Facts software with 'dpkg-query'"
+- name: "Manage apt repository key"
+  tags: software.key
+  ansible.builtin.apt_key:
+    data: "{{ item['data'] | default(omit) }}"
+    file: "{{ item['file'] | default(omit) }}"
+    id: "{{ item['id'] | default(omit) }}"
+    keyring: "{{ item['keyring'] | default(omit) }}"
+    keyserver: "{{ item['keyserver'] | default(omit) }}"
+    url: "{{ item['url'] | default(omit) }}"
+    validate_certs: "{{ item['validate_certs'] | default(omit) }}"
+    state: "{{ item['state'] | default(omit) }}"
+  loop: "{{ software_keys }}"
+
+- name: "Manage apt repository"
+  tags: software.repo
+  ansible.builtin.apt_repository:
+    codename: "{{ item['codename'] | default(omit) }}"
+    filename: "{{ item['filename'] | default(omit) }}"
+    mode: "{{ item['mode'] | default(omit) }}"
+    repo: "{{ item['repo'] | mandatory }}"
+    update_cache: "{{ item['update_cache'] | default(omit) }}"
+    update_cache_retries: "{{ item['update_cache_retries'] | default(omit) }}"
+    update_cache_retry_max_delay: "{{ item['update_cache_retry_max_delay'] | default(omit) }}"
+    validate_certs: "{{ item['validate_certs'] | default(omit) }}"
+    state: "{{ item['state'] | default(omit) }}"
+  loop: "{{ software_repos }}"
+
+- name: "Gather software facts with 'dpkg-query'"
   tags:
     - never
     - software.info
