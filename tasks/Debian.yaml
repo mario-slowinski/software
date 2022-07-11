@@ -41,6 +41,7 @@
     validate_certs: "{{ item['validate_certs'] | default(omit) }}"
     state: "{{ item['state'] | default(omit) }}"
   loop: "{{ software_keys }}"
+  become: true
 
 - name: "Manage apt repository"
   tags: software.repo
@@ -55,6 +56,7 @@
     validate_certs: "{{ item['validate_certs'] | default(omit) }}"
     state: "{{ item['state'] | default(omit) }}"
   loop: "{{ software_repos }}"
+  become: true
 
 - name: "Gather software facts with 'dpkg-query'"
   tags:
